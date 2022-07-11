@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}  {% endblock %}</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="header">
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="/">Курсовая<span class="logo_colour">работа</span></a></h1>
+            <h2>Группа №2</h2>
+          </div>
+        </div>
+        <div id="menubar">
+          <ul id="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/design/">Дизайн</a></li>
+            <li><a href="/web-dev/">Веб-разработка</a></li>
+            <li><a href="/mobile-dev/">Мобильная разработка</a></li>
+            <li><a href="/marketing/">Маркетинг</a></li>
+            <li><a href="/help/">Help</a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="content_header"></div>
+      <div id="site_content">
+        <div id="sidebar_container">
+
+          <div class="sidebar">
+            <div class="sidebar_top"></div>
+            <div class="sidebar_item">
+              <!-- insert your sidebar items here -->
+              <h3><a href="/admin/">Вход</a> |
+                <a href="/registration/">Регистрация</a></h3>
+<!--              <h5>January 1st, 2010</h5>-->
+<!--              <p>2010 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>-->
+            </div>
+            <div class="sidebar_base"></div>
+          </div>
+
+          <div class="sidebar">
+            <div class="sidebar_top"></div>
+            <div class="sidebar_item">
+              <h3>Search</h3>
+              <form method="post" action="#" id="search_form">
+                <p>
+                  <input class="search" type="text" name="search_field" value="" />
+                  <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="{% static 'img/search.png' %}" alt="Search" title="Search" />
+                </p>
+              </form>
+            </div>
+            <div class="sidebar_base"></div>
+          </div>
+        </div>
+        <div id="content">
+          {% block body %}    {% endblock %}
+
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
+
