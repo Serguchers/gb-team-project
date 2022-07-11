@@ -23,8 +23,10 @@ def show_marketing(request):
 def registration(request):
     return render(request, 'registration.html')
 
+
 def signin(request):
     return render(request, '../templates.base.html')
 
 def help_page(request):
     return render(request, 'help.html')
+
