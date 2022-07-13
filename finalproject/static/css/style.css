@@ -288,7 +288,7 @@ ul#menu li a:hover
   width: 200px; 
   text-align: left;}
   
-.form_settings input, .form_settings textarea
+.form_settings input, .form_settings 
 { padding: 5px; 
   width: 299px; 
   font: 100% arial; 
@@ -307,9 +307,6 @@ ul#menu li a:hover
   background: #3B3B3B; 
   color: #FFF;}
 
-.form_settings textarea, .form_settings select
-{ font: 100% arial; 
-  width: 299px;}
 
 .form_settings select
 { width: 310px;}
@@ -341,3 +338,13 @@ table tr td
 { background: #E5E5DB;
   color: #47433F;
   border-top: 1px solid #FFF;}
+
+textarea[name=text] {
+  resize: none;
+  width: 100%;
+  margin-top: 1em;
+}
+
+input[name=create-article]{
+  margin-top: 1em;
+}

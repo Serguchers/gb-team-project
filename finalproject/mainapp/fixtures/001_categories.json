@@ -1,0 +1,30 @@
+[
+    {
+        "model": "mainapp.Category",
+        "pk": 1,
+        "fields": {
+            "title": "Дизайн"
+        }
+    },
+    {
+        "model": "mainapp.Category",
+        "pk": 2,
+        "fields": {
+            "title": "Веб-разработка"
+        }
+    },
+    {
+        "model": "mainapp.Category",
+        "pk": 3,
+        "fields": {
+            "title": "Мобильная разработка"
+        }
+    },
+    {
+        "model": "mainapp.Category",
+        "pk": 4,
+        "fields": {
+            "title": "Маркетинг"
+        }
+    }
+]

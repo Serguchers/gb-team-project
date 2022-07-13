@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block body %}
-      <h2>Это главная страница</h2>
+        <h2>Это главная страница</h2>
+        {% for article in articles %}
+            {{ article }}
+        {% endfor %}
 {% endblock %}
 
 

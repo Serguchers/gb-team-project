@@ -2,14 +2,17 @@ from django.http import HttpResponsePermanentRedirect
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from .forms import ArticleCreationForm
-
+from .models import *
 # Create your views here.
 
 from django.shortcuts import render
 
 
 def show_main(request):
-    return render(request, 'index.html')
+    articles = Article.objects.select_related('category').order_by('created_at')
+    return render(request, 'index.html', context={
+        'articles': articles
+    })
 
 def show_design(request):
     return render(request, 'design.html')
@@ -39,7 +42,7 @@ def create_article(request):
         create_form = ArticleCreationForm(request.POST)
         if create_form.is_valid():
             create_form.save()
-            return HttpResponsePermanentRedirect(reverse('main-page'))
+            return HttpResponsePermanentRedirect(reverse('main:main-page'))
     else:
         create_form = ArticleCreationForm()
         

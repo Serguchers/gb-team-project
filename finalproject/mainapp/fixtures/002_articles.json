@@ -1,0 +1,13 @@
+[
+    {
+        "model": "mainapp.Article",
+        "pk": 1,
+        "fields": {
+            "title": "Test Article",
+            "author": "",
+            "text": "",
+            "category": 1,
+            "is_publshed": "True"
+        }
+    }
+]
