@@ -5,5 +5,8 @@
 {% endblock %}
 
 {% block body %}
-      <h2>Это страница для статей по Веб-разработке</h2>
+    <h2>Это страница для статей по Веб-разработке</h2>
+    {% for article in articles %}
+        {% include 'includes/article.html' %}
+    {% endfor %}
 {% endblock %}

@@ -13,7 +13,7 @@ class Category(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(
-        BaseUser, on_delete=models.PROTECT)
+        BaseUser, on_delete=models.PROTECT, default=None)
     text = models.TextField(blank=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

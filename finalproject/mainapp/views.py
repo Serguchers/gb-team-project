@@ -7,6 +7,9 @@ from .models import *
 
 from django.shortcuts import render
 
+def get_articles_by_category(category_name):
+    articles = Article.objects.filter(category__title=category_name).select_related('category').order_by('created_at')
+    return articles
 
 def show_main(request):
     articles = Article.objects.select_related('category').order_by('created_at')
@@ -15,16 +18,28 @@ def show_main(request):
     })
 
 def show_design(request):
-    return render(request, 'design.html')
+    articles = get_articles_by_category('Дизайн')
+    return render(request, 'design.html', context={
+        'articles': articles
+    })
 
 def show_web_dev(request):
-    return render(request, 'web_dev.html')
+    articles = get_articles_by_category('Веб-разработка')
+    return render(request, 'web_dev.html', context={
+        'articles': articles
+    })
 
 def show_mobile_dev(request):
-    return render(request, 'mobile_dev.html')
+    articles = get_articles_by_category('Мобильная разработка')
+    return render(request, 'mobile_dev.html', context={
+        'articles': articles
+    })
 
 def show_marketing(request):
-    return render(request, 'marketing.html')
+    articles = get_articles_by_category('Маркетинг')
+    return render(request, 'marketing.html', context={
+        'articles': articles
+    })
 
 def registration(request):
     return render(request, 'registration.html')

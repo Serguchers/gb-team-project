@@ -7,7 +7,7 @@
 {% block body %}
         <h2>Это главная страница</h2>
         {% for article in articles %}
-            {{ article }}
+            {% include 'includes/article.html' %}
         {% endfor %}
 {% endblock %}
 
