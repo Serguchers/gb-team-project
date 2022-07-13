@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
-    'debug_toolbar'
+    # 'debug_toolbar',
+    'userapp',
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,6 +59,9 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+# Auth model
+AUTH_USER_MODEL = "userapp.BaseUser"
 
 ROOT_URLCONF = 'finalproject.urls'
 

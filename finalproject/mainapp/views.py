@@ -1,5 +1,7 @@
-from django.shortcuts import render
-
+from django.http import HttpResponsePermanentRedirect
+from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse
+from .forms import ArticleCreationForm
 
 # Create your views here.
 
@@ -31,3 +33,15 @@ def signin(request):
 def help_page(request):
     return render(request, 'help.html')
 
+
+def create_article(request):
+    if request.method == 'POST':
+        create_form = ArticleCreationForm(request.POST)
+        if create_form.is_valid():
+            create_form.save()
+            return HttpResponsePermanentRedirect(reverse('main-page'))
+    else:
+        create_form = ArticleCreationForm()
+        
+    context = {'create_form': create_form}
+    return render(request, 'create_article.html', context=context)
