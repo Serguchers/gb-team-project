@@ -11,5 +11,6 @@ urlpatterns = [
     path('mobile-dev/', show_mobile_dev),
     path('marketing/', show_marketing),
     path('help/', help_page),
-    path('create-article/', create_article, name='create-article')
+    path('create-article/', create_article, name='create-article'),
+    path('article/<pk>/', show_article, name='exact-article')
 ]

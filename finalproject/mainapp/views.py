@@ -1,5 +1,5 @@
 from django.http import HttpResponsePermanentRedirect
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse
 from .forms import ArticleCreationForm
 from .models import *
@@ -40,6 +40,12 @@ def show_marketing(request):
     return render(request, 'marketing.html', context={
         'articles': articles
     })
+    
+def show_article(request, pk):
+    context = {
+        'article': get_object_or_404(Article, pk=pk)
+    }
+    return render(request, 'exact_article.html', context=context)
 
 def registration(request):
     return render(request, 'registration.html')

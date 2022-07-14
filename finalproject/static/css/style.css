@@ -24,7 +24,6 @@ h1, h2, h3, h4, h5, h6
 
 h1, h2, h3
 { font: normal 170% 'century gothic', arial;
-  margin: 0 0 15px 0;
   padding: 15px 0 5px 0;
   color: #000;}
 
@@ -346,5 +345,9 @@ textarea[name=text] {
 }
 
 input[name=create-article]{
+  margin-top: 1em;
+}
+
+.article {
   margin-top: 1em;
 }

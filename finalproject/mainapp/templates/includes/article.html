@@ -1,5 +1,11 @@
-<div>
-    {{ article.title }}
-    {{ article.author }}
-    {{ article.text }}
+<div class='article'>
+    <div>
+        <h2><a href="{% url 'main:exact-article' article.pk %}">{{ article.title }}</a></h2>
+    </div>
+    <div>
+        {{ article.author }}
+    </div>
+    <div>
+        {{ article.text|truncatewords:35}}
+    </div>
 </div>
