@@ -3,9 +3,9 @@
         <h2><a href="{% url 'main:exact-article' article.pk %}">{{ article.title }}</a></h2>
     </div>
     <div>
-        {{ article.author }}
+        {{ article.category }}
     </div>
     <div>
-        {{ article.text|truncatewords:35}}
+        {{ article.text|truncatewords:100}}
     </div>
 </div>
