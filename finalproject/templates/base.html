@@ -17,24 +17,24 @@
     <div id="main">
       <div id="header">
         <div id="logo">
+          <img src="{% static 'img/logo.png' %}">
           <div id="logo_text">
-            <h1><a href="/">Курсовая<span class="logo_colour">работа</span></a></h1>
-            <h2>Группа №2</h2>
+            <h1>Scientia</h1>
           </div>
         </div>
         <div id="menubar">
           <ul id="menu">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/design/">Дизайн</a></li>
-            <li><a href="/web-dev/">Веб-разработка</a></li>
-            <li><a href="/mobile-dev/">Мобильная разработка</a></li>
-            <li><a href="/marketing/">Маркетинг</a></li>
-            <li><a href="/help/">Help</a></li>
+            <a href="/main">Главная</a>
+            <a href="/design/">Дизайн</a>
+            <a href="/web-dev/">Веб-разработка</a>
+            <a href="/mobile-dev/">Мобильная разработка</a>
+            <a href="/marketing/">Маркетинг</a>
+            <a href="/help/">Help</a>
           </ul>
         </div>
       </div>
       <div id="content_header"></div>
-      <div id="site_content">
+      {% comment %} <div id="site_content">
         <div id="sidebar_container">
 
           <div class="sidebar">
@@ -62,9 +62,18 @@
             </div>
             <div class="sidebar_base"></div>
           </div>
-        </div>
+        </div> {% endcomment %}
         <div id="content">
+          <div id="articles">
           {% block body %}    {% endblock %}
+          </div>
+          <div id='side-content'>
+            <div class="auth-pannel">
+              <a href="/admin/">Вход</a> |
+              <a href="/registration/">Регистрация</a>
+            </div>
+            <a href="/create-article/">Написать статью</a>
+          </div>
 
         </div>
       </div>

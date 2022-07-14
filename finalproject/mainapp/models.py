@@ -1,5 +1,5 @@
 from django.db import models
-
+from userapp.models import BaseUser
 
 # Модель раздела/категории.
 class Category(models.Model):
@@ -10,10 +10,11 @@ class Category(models.Model):
 
 
 # Модель статьи/публикации.
-class Articles(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(
-        User, on_delete=models.PROTECT)
+        BaseUser, on_delete=models.PROTECT, default=None)
+    text = models.TextField(blank=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
