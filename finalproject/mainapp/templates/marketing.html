@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Маркетинг
+{% endblock %}
+
+{% block body %}
+    {% for article in articles %}
+        {% include 'includes/article.html' %}
+    {% endfor %}
+{% endblock %}

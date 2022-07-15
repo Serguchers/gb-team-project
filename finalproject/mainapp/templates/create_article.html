@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Создание записи
+{% endblock %}
+
+{% block body %}
+      <form action="{% url 'main:create-article' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div style="display: flex; justify-content: space-between;">
+          <div>Тема: {{ create_form.title }}</div>
+          <div>Категория: {{ create_form.category }}</div>
+          <div>Автор: {{ create_form.author }}</div>
+        </div>
+        <div>{{ create_form.text }}</div>
+        <input name="create-article" type="submit" value="Отправить">
+      </form>
+{% endblock %}

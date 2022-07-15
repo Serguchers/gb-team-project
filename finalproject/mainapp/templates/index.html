@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Главная
+{% endblock %}
+
+{% block body %}
+        {% for article in articles %}
+            {% include 'includes/article.html' %}
+        {% endfor %}
+{% endblock %}
+
+
+
