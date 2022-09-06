@@ -1,0 +1,41 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block title %}
+    Модерация статей
+{% endblock %}
+{% block body %}
+<button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#articles" aria-expanded="false" aria-controls="articles">
+    Статьи
+</button>
+<button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#banArticles" aria-expanded="false" aria-controls="banArticles">
+    Заблокированые статьи
+</button>
+<!--<button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#users" aria-expanded="false" aria-controls="users">-->
+<!--    Пользователи-->
+<!--</button>-->
+<div class="collapse" id="articles">
+    <div class="card card-body">
+        {% for article in articles %}
+            {% if not article.is_moderation %}
+                {% include 'mainapp/includes/article.html' %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<div class="collapse" id="banArticles">
+    <div class="card card-body">
+        {% for article in articles %}
+            {% if not article.is_published and article.is_moderation %}
+                {% include 'mainapp/includes/article.html' %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<!--<div class="collapse" id="users">-->
+<!--    <div class="card card-body">-->
+<!--        {% for user in users %}-->
+<!--            {{ user.username }}-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--</div>-->
+{% endblock %}

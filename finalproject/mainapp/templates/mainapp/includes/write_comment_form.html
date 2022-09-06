@@ -1,0 +1,7 @@
+<form class='comment-form' action="{% url 'main:exact-article' article.pk%}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        {{ comment_form.body }}
+    </div>
+    <input name='write-comment' type='submit' value='Отправить'>
+</form>

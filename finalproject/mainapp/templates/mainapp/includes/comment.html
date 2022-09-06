@@ -1,0 +1,51 @@
+{% load static %}
+
+{% for comment in comments %}
+    <div class='comment'>
+        <div class="p-3 mb-2 shadow bg-gradient text-dark">
+            <span class="badge text-bg-primary">{{ comment.author }}</span>
+            <span class="badge text-bg-info">{{ comment.created_at|timesince }}</span>
+            <p>{{ comment.body }}</p>
+                <div class="row justify-content-between text-center">
+                    <div class="col-2">
+                        <button class="border reply-form reply {{ comment.pk }} btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ comment.id }}" aria-expanded="false" aria-controls="collapseExample{{ comment.id }}">
+                        Ответить
+                        </button>
+                    </div>
+                    <div class="col-2">
+                        <form action="{% url 'main:comment-like' comment.pk %}" method="POST">
+                        {% csrf_token %}
+                            <div class="btn-group" role="group" aria-label=>
+                                <button class='btn btn-sm border' type="submit" name="comment.id" value="{{ comment.id }}" ><img src="{% static 'img/like.svg' %}" class="rounded center" width="21" height="21"></button>
+                                <button type="button" class="btn btn-sm border disabled">{{comment.likes.all.count}}</button>
+                            </div>
+                        </form>
+                    </div>
+                    {% ifequal request.session.vote 2 %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="text-right">{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endifequal  %}
+                </div>
+<!--            </div>-->
+            <div class='reply-form reply {{ comment.pk }} collapse' id="collapseExample{{ comment.id }}">
+                <div>
+                    <textarea name="body" rows="3" class="comment-area form-control shadow-sm" required="" id="id_body"></textarea>
+                </div>
+                <input name='parent_id' type='hidden' value='{{ comment.pk }}'>
+                <div class="p-3">
+                    <input class="btn btn-primary btn-sm" data-parent='{{ comment.pk }}' name='write-reply' type='submit' value="Отправить">
+                </div>
+            </div>
+            {% for reply in comment.children %}
+                <div class="p-3 mb-2 shadow bg-gradient text-dark">
+                    {% include 'mainapp/includes/reply.html'%}
+                </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+{% endfor %}

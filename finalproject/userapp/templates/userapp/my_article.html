@@ -1,0 +1,11 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block title %}
+    Мои статьи
+{% endblock %}
+
+{% block body %}
+        {% for article in articles %}
+            {% include 'mainapp/includes/article.html' %}
+        {% endfor %}
+{% endblock %}

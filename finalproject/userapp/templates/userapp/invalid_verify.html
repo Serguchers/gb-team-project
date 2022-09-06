@@ -1,0 +1,8 @@
+{% extends 'mainapp/base.html' %}
+
+{% block body %}
+    <div>
+        <p>Ваша ссылка не корректна, зарегистрируйтесь снова</p>
+        <a href="{% url 'user:signin' %}">Войти в аккаунт</a>
+    </div>
+{% endblock %}

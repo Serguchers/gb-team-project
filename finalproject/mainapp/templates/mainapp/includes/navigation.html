@@ -1,0 +1,50 @@
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="container flex-wrap flex-md-nowrap" aria-label="Main navigation">
+    <a class="navbar-brand" href="{% url 'main:main-page' %}">Scientia</a>
+
+    <form method="get">
+      {{ article_search_form.title }}
+    </form>
+  </nav>
+</header>
+
+<nav class="bg-body sticky-top py-2 shadow-sm" aria-label="Secondary navigation">
+  <div class="container d-flex align-items-md-center">
+
+      <ul class="nav me-auto mb-lg-0">
+        <a class="nav-link"  href="{% url 'main:main-page' %}">Все категории</a>
+
+        {% for category in menu_categories %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:category' category.slug %}">{{category.title}}</a>
+            </li>
+        {% endfor %}
+      </ul>
+      <div>
+          {% if request.user.is_authenticated %}
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{request.user.username}}</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'main:create-article' %}">Написать статью</a></li>
+                <li><a class="dropdown-item" href="{% url 'user:my_article' %}">Мои статьи</a></li>
+                {% if request.user.is_staff %}
+                  <li><a class="dropdown-item" href="{% url 'moder:articles-to-approve' %}">Модерация</a></li>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                  <li><a class="dropdown-item" href="/admin/">Админка</a></li>
+                {% endif %}
+                    <li><a class="dropdown-item" href="{% url 'user:profile' %}">Профиль</a></li>
+                    <li><a class="dropdown-item" href="/signout/">Выйти</a></li>
+              </ul>
+          {% else %}
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Учетная запись</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/signin/">Вход</a></li>
+                <li><a class="dropdown-item" href="/registration/">Регистрация</a></li>
+                <li><a class="dropdown-item" href="/pass_reset/">Забыли пароль?</a></li>
+              </ul>
+          {% endif %}
+        </div>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,78 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% load markdown_extra %}
+
+{% block title %}
+    Статья
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/post_comment_or_reply.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div>
+        <h2>{{ article.title }}</h2>
+    </div>
+    <div>
+        <a href="/users/{{ article.author }}/">{{ article.author }}</a>
+    </div>
+    <div>
+        {% for tag in article.tags.all %}
+            {{ tag }}
+        {% endfor %}
+        {% include 'moderapp/includes/approve_or_block.html' %}
+    </div>
+    <div>
+        {{ article.text | markdown | safe }}
+    </div>
+
+    <br/><br/>
+    <div class="row justify-content-between text-center">
+        <div class="col-2">
+            <form action="{% url 'main:article-complain' article.pk %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-sm border" type="submit" name="article.id" value="{{ article.id }}">Пожаловаться</button>
+            </form>
+        </div>
+        <div class="col-2">
+            <form action="{% url 'main:article-like' article.pk %}" method="POST">
+                {% csrf_token %}
+                <div class="btn-group" role="group" aria-label=>
+                    <button class='btn btn-sm border' type="submit" name="article.id" value="{{ article.id }}" ><img src="{% static 'img/like.svg' %}" class="rounded center" width="21" height="21"></button>
+                    <button type="button" class="btn btn-sm border disabled">{{article.likes.all.count}}</button>
+                </div>
+        <!--        <button type="submit", name="article.id", value="{{ article.id }}" >Like <span>{{article.likes.all.count}}</span></button>-->
+            </form>
+        </div>
+        {% ifequal request.session.vote 1 %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="text-right">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endifequal  %}
+    </div>
+    <p class='comment-header p-1'>Комментарии</p>
+    <form class='comment-form' action="{% url 'main:exact-article' article.pk%}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            {{ comment_form.body }}
+        </div>
+        <div class="p-3">
+            <button class="btn btn-primary btn-sm" name='write-comment' type='submit' >Отправить</button>
+        </div>
+    </form>
+
+    <div class='comments'>
+        {% include 'mainapp/includes/comment.html'%}
+        {% comment %} <form class='comment-form reply {{ comment.pk }}' action="{% url 'main:exact-article' article.pk%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                {{ comment_form.body }}
+            </div>
+            <input name='parent_id' type='hidden' value='{{ comment.pk }}'>
+            <input name='write-comment' type='submit' value='Ответить'>
+        </form> {% endcomment %}
+</div>
+{% endblock %}

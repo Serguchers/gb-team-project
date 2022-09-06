@@ -1,0 +1,7 @@
+<form class='approve-form {{ article.pk }}' action="{% url 'moder:approve-or-block' article.pk %}" method="post" enctype="multipart/form-data">
+    {% if request.user.is_superuser or request.user.is_staff and request.user.is_active %}
+        {% csrf_token %}
+        <input class="btn btn-success btn-sm" name='approve' type='submit' value='Одобрить'>
+        <input class="btn btn-danger btn-sm" name='block' type='submit' value='Заблокировать'>
+    {% endif %}
+</form>

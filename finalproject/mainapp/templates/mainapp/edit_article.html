@@ -1,0 +1,30 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block js %}
+    {% comment %} <script src="{% static 'js/validate_article_creation.js' %}"></script> {% endcomment %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script>
+      $(document).ready(function () {
+        $(".django-ckeditor-widget").css("width", "100%")
+      });
+    </script>
+{% endblock %}
+
+{% block body %}
+      <form class='edit-article-form' action="{% url 'main:edit-article' article.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div style="display: flex; justify-content: space-between;">
+          <div>Тема: {{ edit_form.title }}</div>
+          <div>Категория: {{ edit_form.category }}</div>
+        </div>
+        <div>
+          {{ edit_form.text }}
+        </div>
+        <div>Теги: {{ edit_form.tags }}</div>
+        <input name="create-article" type="submit" value="Отправить">
+      </form>
+{% endblock %}

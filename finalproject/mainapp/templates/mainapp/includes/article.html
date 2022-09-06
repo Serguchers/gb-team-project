@@ -1,0 +1,22 @@
+{% load markdown_extra %}
+<div>
+    <h2><a href="{% url 'main:exact-article' article.pk %}">{{ article.title }}</a></h2>
+</div>
+<div>
+    <h4>{{ article.likes.all.count }} Like{{ article.likes.all.count | pluralize}}</h4>
+</div>
+<div>
+    <p>{{ article.category }}</p>
+    <p>{{ article.created_at|timesince }}</p>
+    <p>
+        {% for tag in article.tags.all %}
+            <mark>{{ tag }}</mark>
+        {% endfor %}
+    </p>
+</div>
+<div>
+    {{ article.text|safe|truncatechars_html:350 }}
+</div>
+{% if article.author.username == request.user.username %}
+    <a href="{% url 'main:edit-article' article.pk %}"> Редактировать </a>
+{% endif %}

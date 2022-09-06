@@ -1,0 +1,27 @@
+<br/>
+ <style>
+    .article-menu{
+      display: inline-block;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+        }
+    .article-menu a {
+      margin-left: 20px !important;
+       }
+</style>
+  
+<div class="container">
+<!--    <select class="form-select">-->
+<!--        <option selected value="<a href='{% url 'main:main-page' %}'></a>">Откройте это меню выбора</option>-->
+<!--        <option value="<a href='{% url 'main:main-page' %}?period=1'></a>">Один</option>-->
+<!--        <option value="{% url 'main:main-page' %}?period=2">Один</option>-->
+<!--        <option value="href='{% url 'main:main-page' %}?period=3'">Один</option>-->
+<!--    </select>-->
+
+
+    <a href="{% url 'main:main-page' %}">Все подряд</a>
+    <a href="{% url 'main:main-page' %}?period=1">Лучшие за все время</a>
+    <a href="{% url 'main:main-page' %}?period=2">Лучшие за месяц</a>
+    <a href="{% url 'main:main-page' %}?period=3">Лучшие за неделю</a>
+</div>
+<br/>

@@ -1,0 +1,22 @@
+[
+    {
+        "model": "userapp.baseuser",
+        "pk": "d6bf4ed8-8e00-4d19-960e-0df5842c4dd3",
+        "fields": {
+            "password": "pbkdf2_sha256$260000$F7Joa5f45j04nl9kKjC6LJ$RhCEgWLv3ckN8epg+ZI7kiSvf0ACC0cXgSIb54vulPo=",
+            "last_login": "2022-07-13T15:57:34.282Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": true,
+            "is_active": true,
+            "email_verified": true,
+            "is_banned": false,
+            "date_joined": "2022-07-13T15:53:49.740Z",
+            "email": "admin@a.ru",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+    ]

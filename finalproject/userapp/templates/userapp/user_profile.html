@@ -1,0 +1,37 @@
+{% extends "mainapp/base.html" %}
+{% block title %}Profile Page{% endblock title %}
+{% block body %}
+    {% if request.user.is_staff %}
+        <form class='user-block-form' action="{% url 'moder:ban-page' user.username %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if user.is_banned %}
+                <input name='approve' type='submit' value='Разблокировать'>
+            {% else %}
+                <input name='block' type='submit' value='Заблокировать'>
+            {% endif %}
+        </form>
+    {% endif %}
+<div class="container">
+    <div class='bg-white p-5 rounded'>
+        <div class="col-sm-8 mx-auto">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Открыть профиль {{ user.username }}
+            </button>
+            <div class="collapse" id="collapseExample">
+              <div>
+                <p>Username: {{ user.username }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>First name: {{ user.first_name }}</p>
+                <p>Last name: {{ user.last_name }}</p>
+                <p>Birth date: {{ profile_form.birth_date }}</p>
+                <p>Avatar: {{ profile_form.avatar }}</p>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {% for article in articles %}
+        {% include 'mainapp/includes/article.html' %}
+    {% endfor %}
+
+{% endblock %}

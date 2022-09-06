@@ -1,0 +1,16 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block title %}
+    Главная
+{% endblock %}
+{% block body %}
+    {% include 'mainapp/includes/filter_form.html'%}
+    {% include 'mainapp/includes/article_rating_menu.html'%}
+    {% for article in articles %}
+        {% include 'mainapp/includes/article.html' %}
+    {% endfor %}
+    {% include 'mainapp/includes/pagination.html' %}
+{% endblock %}
+
+
+

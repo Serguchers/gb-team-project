@@ -1,0 +1,29 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block title %}
+    Авторизация
+{% endblock %}
+
+{% block reg %}
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form method="post" class="p-4 p-md-5 border rounded-3 bg-light">
+                {% csrf_token %}
+                <div class="form-error">{{ form.non_field_errors }}</div>
+                <h2>Вход</h2>
+                {% for f in form %}
+                    <div class="form-floating mb-3">
+                        {{ f }}
+                        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                        <div class="form-error">{{ f.errors }}</div>
+                    </div>
+                {% endfor %}
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
